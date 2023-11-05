@@ -8,28 +8,30 @@ namespace TDDProject
 {
     public class Moving : IMoving
     {
-        private void MoveNewXY(ref (float X, float Y) a, in (float X, float Y) move)
+        private (float X, float Y) MoveNewXY(in (float X, float Y) a, in (float X, float Y) move) => (a.X + move.X, a.Y + move.Y);
+        public ((float X, float Y), (float X, float Y), (float X, float Y), (float X, float Y)) Move((float X, float Y) a, (float X, float Y) b, (float X, float Y) c, (float X, float Y) d, in (float X, float Y) move) 
         {
-            a.X += move.X;
-            a.Y += move.Y;
+            var newA = MoveNewXY(a, move);
+            var newB = MoveNewXY(b, move);
+            var newC = MoveNewXY(c, move);
+            var newD = MoveNewXY(d, move);
+            return (newA, newB, newC, newD);
         }
-        public void Move(ref (float X, float Y) a, ref (float X, float Y) b, ref (float X, float Y) c, ref (float X, float Y) d, in (float X, float Y) move) 
+        public ((float X, float Y),(float X, float Y),(float X, float Y)) Move((float X, float Y) a, (float X, float Y) b, (float X, float Y) c, in (float X, float Y) move) 
         {
-            MoveNewXY(ref a,move); 
-            MoveNewXY(ref b,move);
-            MoveNewXY(ref c,move);
-            MoveNewXY(ref d,move);
-        }
-        public void Move(ref (float X, float Y) a, ref (float X, float Y) b, ref (float X, float Y) c, in (float X, float Y) move) 
+            var newA = MoveNewXY(a, move);
+            var newB = MoveNewXY(b, move);
+            var newC = MoveNewXY(c, move);
+
+            return (newA, newB, newC);
+
+        }        
+
+        public ((float X, float Y),(float X, float Y)) Move((float X, float Y) a, (float X, float Y) b, in (float X, float Y) move)
         {
-            MoveNewXY(ref a, move);
-            MoveNewXY(ref b, move);
-            MoveNewXY(ref c, move);
-        }
-        public void Move(ref (float X, float Y) a, ref (float X, float Y) b, in (float X, float Y) move)
-        {
-            MoveNewXY(ref a, move);
-            MoveNewXY(ref b, move);
+            var newA = MoveNewXY(a, move);
+            var newB = MoveNewXY(b, move);
+            return (newA, newB);
         }
     }
 }

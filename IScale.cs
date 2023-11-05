@@ -8,8 +8,8 @@ namespace TDDProject
 {
     internal interface IScale
     {
-        void Scaling(ref (float X, float Y) a, ref (float X, float Y) b, ref (float X, float Y) c, ref (float X, float Y) d, int scale);
-        void Scaling(ref (float X, float Y) a, ref (float X, float Y) b, ref (float X, float Y) c, int scale);
-        void Scaling(ref (float X, float Y) a, ref (float X, float Y) b, int scale);
+        ((float X, float Y), (float X, float Y), (float X, float Y), (float X, float Y)) Scaling((float X, float Y) a, (float X, float Y) b, (float X, float Y) c, (float X, float Y) d, float scale);
+        ((float X, float Y), (float X, float Y)) Scaling((float X, float Y) a, (float X, float Y) b, float scale);
+        ((float X, float Y), (float X, float Y), (float X, float Y)) Scaling((float X, float Y) a, (float X, float Y) b, (float X, float Y) c, float scale);
     }
 }

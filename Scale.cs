@@ -8,28 +8,77 @@ namespace TDDProject
 {
     public class Scale : IScale
     {
-        private void NewXY(ref (float X, float Y) a, int scale)
+        public ((float X, float Y), (float X, float Y), (float X, float Y), (float X, float Y)) Scaling((float X, float Y) a, (float X, float Y) b, (float X, float Y) c, (float X, float Y) d, float scale)
         {
-            a.X += scale;
-            a.Y += scale;
+            (float X, float Y) newA = (a.X - scale, a.Y - scale);
+            (float X, float Y) newB = (b.X - scale, b.Y + scale);
+            (float X, float Y) newC = (c.X + scale, c.Y + scale);
+            (float X, float Y) newD = (d.X + scale, d.Y - scale);
+            return (newA, newB, newC, newD);
         }
-        public void Scaling(ref (float X, float Y) a, ref (float X, float Y) b, ref (float X, float Y) c, ref (float X, float Y) d, int scale)
+        public ((float X, float Y), (float X, float Y), (float X, float Y)) Scaling((float X, float Y) a, (float X, float Y) b, (float X, float Y) c, float scale)
         {
-            NewXY(ref a, scale);
-            NewXY(ref b, scale);
-            NewXY(ref c, scale);
-            NewXY(ref d, scale);
+            (float X, float Y) newA = (a.X - scale, a.Y - scale);
+            (float X, float Y) newB = (b.X - scale, b.Y + scale);
+            (float X, float Y) newC = (c.X + scale, c.Y + scale);
+            return (newA, newB, newC);
+
         }
-        public void Scaling(ref (float X, float Y) a, ref (float X, float Y) b, ref (float X, float Y) c, int scale) 
+
+        public ((float X, float Y), (float X, float Y)) Scaling((float X, float Y) a, (float X, float Y) b, float scale)
         {
-            NewXY(ref a, scale);
-            NewXY(ref b, scale);
-            NewXY(ref c, scale);
-        }
-        public void Scaling(ref (float X, float Y) a, ref (float X, float Y) b, int scale)
-        {
-            NewXY(ref a, scale);
-            NewXY(ref b, scale);
+            (float X, float Y) newA;
+            (float X, float Y) newB;
+            if (a.X == b.X)
+            {
+                if (a.Y > b.Y)
+                {
+                    newA = (a.X, a.Y + scale);
+                    newB = (b.X, b.Y - scale);
+                }
+                else
+                {
+                    newA = (a.X, a.Y - scale);
+                    newB = (b.X, b.Y + scale);
+                }              
+                                  
+            }
+            else if(a.X > b.X)
+            {
+                if(a.Y == b.Y)
+                {
+                    newA = (a.X + scale, a.Y);
+                    newB = (b.X - scale, b.Y);
+                }
+                else if(a.Y > b.Y) {
+                    newA = (a.X + scale, a.Y + scale);
+                    newB = (b.X - scale, b.Y - scale);
+                }
+                else
+                {
+                    newA = (a.X + scale, a.Y - scale);
+                    newB = (b.X - scale, b.Y + scale);
+                }
+            }
+            else
+            {
+                if (a.Y == b.Y)
+                {
+                    newA = (a.X - scale, a.Y);
+                    newB = (b.X + scale, b.Y);
+                }
+                else if (a.Y > b.Y)
+                {
+                    newA = (a.X - scale, a.Y + scale);
+                    newB = (b.X + scale, b.Y - scale);
+                }
+                else
+                {
+                    newA = (a.X - scale, a.Y - scale);
+                    newB = (b.X + scale, b.Y + scale);
+                }
+            }
+            return (newA, newB);
         }
     }
 }

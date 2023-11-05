@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TDDProject
 {
-    internal class Triangle : Point,  ITriangle
+    public class Triangle : Point,  ITriangle, IColorable
     {
         public string Colour { get; set; }
         public Triangle((float X, float Y) a, (float X, float Y) b, (float X, float Y) c, string colour) : base(a, b, c)

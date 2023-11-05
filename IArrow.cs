@@ -10,4 +10,9 @@ namespace TDDProject
     {
         float Length((float X, float Y) a, (float X, float Y) b);
     }
+    public interface IColorable
+    {
+        string Colour { get; set; }
+    }
+
 }

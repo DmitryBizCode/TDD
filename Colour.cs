@@ -8,9 +8,9 @@ namespace TDDProject
 {
     public class Colour
     {
-        public void ReColour(ref string colour,string newcolor)
+        public void ReColour(IColorable colorable, string newColor)
         {
-            colour = newcolor;
+            colorable.Colour = newColor;
         }
     }
 }

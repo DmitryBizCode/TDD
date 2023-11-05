@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TDDProject
 {
-    public class Rectangle : Point , IRectangle
+    public class Rectangle : Point , IRectangle , IColorable
     {
         public string Colour { get; set; }
         public Rectangle((float X, float Y) a, (float X, float Y) b, (float X, float Y) c, (float X, float Y) d, string colour) : base(a, b, c, d)
