@@ -19,8 +19,8 @@ namespace TDDProject
         public ((float X, float Y), (float X, float Y), (float X, float Y)) Scaling((float X, float Y) a, (float X, float Y) b, (float X, float Y) c, float scale)
         {
             (float X, float Y) newA = (a.X - scale, a.Y - scale);
-            (float X, float Y) newB = (b.X - scale, b.Y + scale);
-            (float X, float Y) newC = (c.X + scale, c.Y + scale);
+            (float X, float Y) newB = (b.X, b.Y + scale);
+            (float X, float Y) newC = (c.X + scale, c.Y - scale);
             return (newA, newB, newC);
 
         }

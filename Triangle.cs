@@ -15,9 +15,9 @@ namespace TDDProject
             float q = Length(A, B);
             float w = Length(B, C);
             float e = Length(C, D);
-            if (((q + w) > e && (q + e) > w && (e + w) > q) || (a.X == b.X && a.X == c.X && b.X == c.X) ||
+            if (((q + w) < e || (q + e) < w || (e + w) < q) || (a.X == b.X && a.X == c.X && b.X == c.X) ||
                 (a.Y == b.Y && a.Y == c.Y && b.Y == c.Y))
-                throw new ArgumentOutOfRangeException("((q + w) > e && (q + e) > w && (e + w) > q) || (a.X == b.X && a.X == c.X && b.X == c.X) || (a.Y == b.Y && a.Y == c.Y && b.Y == c.Y)");
+                throw new ArgumentOutOfRangeException("((q + w) < e && (q + e) < w && (e + w) < q) || (a.X == b.X && a.X == c.X && b.X == c.X) || (a.Y == b.Y && a.Y == c.Y && b.Y == c.Y)");
             Colour = colour; 
         }
 
@@ -28,7 +28,7 @@ namespace TDDProject
             float q = Length(A, B);
             float w = Length(B, C);
             float e = Length(C, D);
-            return q + w + e;
+            return (float)(q + w + e);
         }
         public float S()
         {
